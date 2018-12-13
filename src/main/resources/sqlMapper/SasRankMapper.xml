@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyw.sas.dao.SasRankDao">
+  <resultMap id="BaseResultMap" type="com.lyw.sas.model.SasRank">
+    <result column="STUDENT_ID" jdbcType="CHAR" property="studentId" />
+    <result column="PROBLEM_TYPE" jdbcType="VARCHAR" property="problemType" />
+    <result column="SCORE" jdbcType="VARCHAR" property="score" />
+    <result column="PROBLEM_POSITION" jdbcType="VARCHAR" property="problemPosition" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.lyw.sas.model.SasRank">
+    insert into t_sas_rank (STUDENT_ID, PROBLEM_TYPE, SCORE, 
+      PROBLEM_POSITION, CREATE_TIME, MODIFY_TIME
+      )
+    values (#{studentId,jdbcType=CHAR}, #{problemType,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR}, 
+      #{problemPosition,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lyw.sas.model.SasRank">
+    insert into t_sas_rank
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="studentId != null">
+        STUDENT_ID,
+      </if>
+      <if test="problemType != null">
+        PROBLEM_TYPE,
+      </if>
+      <if test="score != null">
+        SCORE,
+      </if>
+      <if test="problemPosition != null">
+        PROBLEM_POSITION,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="studentId != null">
+        #{studentId,jdbcType=CHAR},
+      </if>
+      <if test="problemType != null">
+        #{problemType,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="problemPosition != null">
+        #{problemPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectRankNo" parameterType="com.lyw.sas.model.SasRank" resultType="java.lang.Integer">
+    SELECT COUNT(1)+1
+    FROM t_sas_rank
+    WHERE PROBLEM_TYPE = #{problemType,jdbcType=VARCHAR} AND
+          SCORE > (SELECT SCORE FROM a.t_sas_rank WHERE a.STUDENT_ID = #{studentId,jdbcType=CHAR})
+  </select>
+
+  <select id="selectTop3indb" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT *
+    FROM t_sas_rank
+    WHERE (SELECT * FROM a.t_sas_rank ORDER BY a.SCORE WHERE a.PROBLEM_TYPE = #{problemType,jdbcType=VARCHAR})
+    LIMIT 3
+  </select>
+
+  <select id="selectSasRank" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT *
+    FROM t_sas_rank
+    WHERE STUDENT_ID = #{studentId,jdbcType=CHAR}
+  </select>
+</mapper>

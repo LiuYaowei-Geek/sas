@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyw.sas.dao.SasProblemDao">
+  <resultMap id="BaseResultMap" type="com.lyw.sas.model.SasProblem">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="PROBLEM_TYPE" jdbcType="VARCHAR" property="problemType" />
+    <result column="PROBLEM_DESC" jdbcType="VARCHAR" property="problemDesc" />
+    <result column="PROBLEM_ANSWER_A" jdbcType="VARCHAR" property="problemAnswerA" />
+    <result column="PROBLEM_ANSWER_B" jdbcType="VARCHAR" property="problemAnswerB" />
+    <result column="PROBLEM_ANSWER_C" jdbcType="VARCHAR" property="problemAnswerC" />
+    <result column="PROBLEM_ANSWER_D" jdbcType="VARCHAR" property="problemAnswerD" />
+    <result column="PROBLEM_ANSWER_RIGHT" jdbcType="CHAR" property="problemAnswerRight" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PROBLEM_TYPE, PROBLEM_DESC, PROBLEM_ANSWER_A, PROBLEM_ANSWER_B, PROBLEM_ANSWER_C, 
+    PROBLEM_ANSWER_D, PROBLEM_ANSWER_RIGHT, CREATE_TIME, MODIFY_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_sas_problem
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_sas_problem
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyw.sas.model.SasProblem">
+    insert into t_sas_problem (ID, PROBLEM_TYPE, PROBLEM_DESC, 
+      PROBLEM_ANSWER_A, PROBLEM_ANSWER_B, PROBLEM_ANSWER_C, 
+      PROBLEM_ANSWER_D, PROBLEM_ANSWER_RIGHT, CREATE_TIME, 
+      MODIFY_TIME)
+    values (#{id,jdbcType=INTEGER}, #{problemType,jdbcType=VARCHAR}, #{problemDesc,jdbcType=VARCHAR}, 
+      #{problemAnswerA,jdbcType=VARCHAR}, #{problemAnswerB,jdbcType=VARCHAR}, #{problemAnswerC,jdbcType=VARCHAR}, 
+      #{problemAnswerD,jdbcType=VARCHAR}, #{problemAnswerRight,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lyw.sas.model.SasProblem">
+    insert into t_sas_problem
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="problemType != null">
+        PROBLEM_TYPE,
+      </if>
+      <if test="problemDesc != null">
+        PROBLEM_DESC,
+      </if>
+      <if test="problemAnswerA != null">
+        PROBLEM_ANSWER_A,
+      </if>
+      <if test="problemAnswerB != null">
+        PROBLEM_ANSWER_B,
+      </if>
+      <if test="problemAnswerC != null">
+        PROBLEM_ANSWER_C,
+      </if>
+      <if test="problemAnswerD != null">
+        PROBLEM_ANSWER_D,
+      </if>
+      <if test="problemAnswerRight != null">
+        PROBLEM_ANSWER_RIGHT,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="problemType != null">
+        #{problemType,jdbcType=VARCHAR},
+      </if>
+      <if test="problemDesc != null">
+        #{problemDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="problemAnswerA != null">
+        #{problemAnswerA,jdbcType=VARCHAR},
+      </if>
+      <if test="problemAnswerB != null">
+        #{problemAnswerB,jdbcType=VARCHAR},
+      </if>
+      <if test="problemAnswerC != null">
+        #{problemAnswerC,jdbcType=VARCHAR},
+      </if>
+      <if test="problemAnswerD != null">
+        #{problemAnswerD,jdbcType=VARCHAR},
+      </if>
+      <if test="problemAnswerRight != null">
+        #{problemAnswerRight,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lyw.sas.model.SasProblem">
+    update t_sas_problem
+    <set>
+      <if test="problemType != null">
+        PROBLEM_TYPE = #{problemType,jdbcType=VARCHAR},
+      </if>
+      <if test="problemDesc != null">
+        PROBLEM_DESC = #{problemDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="problemAnswerA != null">
+        PROBLEM_ANSWER_A = #{problemAnswerA,jdbcType=VARCHAR},
+      </if>
+      <if test="problemAnswerB != null">
+        PROBLEM_ANSWER_B = #{problemAnswerB,jdbcType=VARCHAR},
+      </if>
+      <if test="problemAnswerC != null">
+        PROBLEM_ANSWER_C = #{problemAnswerC,jdbcType=VARCHAR},
+      </if>
+      <if test="problemAnswerD != null">
+        PROBLEM_ANSWER_D = #{problemAnswerD,jdbcType=VARCHAR},
+      </if>
+      <if test="problemAnswerRight != null">
+        PROBLEM_ANSWER_RIGHT = #{problemAnswerRight,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lyw.sas.model.SasProblem">
+    update t_sas_problem
+    set PROBLEM_TYPE = #{problemType,jdbcType=VARCHAR},
+      PROBLEM_DESC = #{problemDesc,jdbcType=VARCHAR},
+      PROBLEM_ANSWER_A = #{problemAnswerA,jdbcType=VARCHAR},
+      PROBLEM_ANSWER_B = #{problemAnswerB,jdbcType=VARCHAR},
+      PROBLEM_ANSWER_C = #{problemAnswerC,jdbcType=VARCHAR},
+      PROBLEM_ANSWER_D = #{problemAnswerD,jdbcType=VARCHAR},
+      PROBLEM_ANSWER_RIGHT = #{problemAnswerRight,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByProType" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM t_sas_problem
+    WHERE PROBLEM_TYPE = #{problemType,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

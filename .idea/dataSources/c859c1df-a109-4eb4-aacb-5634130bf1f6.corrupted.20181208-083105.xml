@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@localhost">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.14">
+    <root id="1"/>
+    <schema id="2" parent="1" name="fps">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="sys"/>
+    <schema id="7" parent="1" name="test"/>
+    <schema id="8" parent="1" name="sas">
+      <Visible>1</Visible>
+    </schema>
+    <table id="9" parent="2" name="t_fps_pro_style">
+      <Comment>joker-产品样式表</Comment>
+    </table>
+    <column id="10" parent="9" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="11" parent="9" name="PRODUCT_ID">
+      <Position>2</Position>
+      <Comment>产品ID</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="12" parent="9" name="STYLE_NAME">
+      <Position>3</Position>
+      <Comment>样式名称</Comment>
+      <DataType>varchar(128)|0s</DataType>
+    </column>
+    <column id="13" parent="9" name="DETAIL_NAME">
+      <Position>4</Position>
+      <Comment>详情名称</Comment>
+      <DataType>varchar(128)|0s</DataType>
+    </column>
+    <column id="14" parent="9" name="DEATIL_TYPE">
+      <Position>5</Position>
+      <Comment>详情类型</Comment>
+      <DataType>varchar(2)|0s</DataType>
+    </column>
+    <column id="15" parent="9" name="DETAIL_COMMENT">
+      <Position>6</Position>
+      <Comment>详情内容</Comment>
+      <DataType>varchar(2000)|0s</DataType>
+    </column>
+    <column id="16" parent="9" name="DETAIL_FOLD">
+      <Position>7</Position>
+      <Comment>是否折叠</Comment>
+      <DataType>varchar(2)|0s</DataType>
+    </column>
+    <column id="17" parent="9" name="STYLE_NO">
+      <Position>8</Position>
+      <Comment>样式序号</Comment>
+      <DataType>varchar(4)|0s</DataType>
+    </column>
+    <column id="18" parent="9" name="STATUS">
+      <Position>9</Position>
+      <Comment>样式状态</Comment>
+      <DataType>varchar(2)|0s</DataType>
+    </column>
+    <column id="19" parent="9" name="REMARK">
+      <Position>10</Position>
+      <Comment>备注</Comment>
+      <DataType>varchar(200)|0s</DataType>
+    </column>
+    <column id="20" parent="9" name="CREATE_TIME">
+      <Position>11</Position>
+      <Comment>创建时间</Comment>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="9" name="UPDATE_TIME">
+      <Position>12</Position>
+      <Comment>更新时间</Comment>
+      <DataType>datetime(6)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="22" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

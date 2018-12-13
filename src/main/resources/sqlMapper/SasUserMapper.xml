@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyw.sas.dao.SasUserDao">
+  <resultMap id="BaseResultMap" type="com.lyw.sas.model.SasUser">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="STUDENT_NAME" jdbcType="VARCHAR" property="studentName" />
+    <result column="STUDENT_ID" jdbcType="CHAR" property="studentId" />
+    <result column="STUDENT_PASSWORD" jdbcType="VARCHAR" property="studentPassword" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, STUDENT_NAME, STUDENT_ID, STUDENT_PASSWORD, CREATE_TIME, MODIFY_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_sas_user
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_sas_user
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyw.sas.model.SasUser">
+    insert into t_sas_user (ID, STUDENT_NAME, STUDENT_ID, 
+      STUDENT_PASSWORD, CREATE_TIME, MODIFY_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{studentName,jdbcType=VARCHAR}, #{studentId,jdbcType=CHAR}, 
+      #{studentPassword,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lyw.sas.model.SasUser">
+    insert into t_sas_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="studentName != null">
+        STUDENT_NAME,
+      </if>
+      <if test="studentId != null">
+        STUDENT_ID,
+      </if>
+      <if test="studentPassword != null">
+        STUDENT_PASSWORD,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="studentName != null">
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null">
+        #{studentId,jdbcType=CHAR},
+      </if>
+      <if test="studentPassword != null">
+        #{studentPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lyw.sas.model.SasUser">
+    update t_sas_user
+    <set>
+      <if test="studentName != null">
+        STUDENT_NAME = #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null">
+        STUDENT_ID = #{studentId,jdbcType=CHAR},
+      </if>
+      <if test="studentPassword != null">
+        STUDENT_PASSWORD = #{studentPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lyw.sas.model.SasUser">
+    update t_sas_user
+    set STUDENT_NAME = #{studentName,jdbcType=VARCHAR},
+      STUDENT_ID = #{studentId,jdbcType=CHAR},
+      STUDENT_PASSWORD = #{studentPassword,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectBystuId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM t_sas_user
+    WHERE STUDENT_ID = #{studentId,jdbcType=CHAR}
+  </select>
+
+
+</mapper>

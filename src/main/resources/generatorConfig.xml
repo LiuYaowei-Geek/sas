@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <classPathEntry location="D:\.m2\mysql-connector-java-5.1.40-bin.jar" />
+    <context id="sas" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/sas"
+                        userId="root"
+                        password="lyw"/>
+
+        <javaModelGenerator targetPackage="com.lyw.sas.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="sqlMapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lyw.sas.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--<table tableName="T_SAS_USER" domainObjectName="SasUser"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--<table tableName="T_SAS_PROBLEM" domainObjectName="SasProblem"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <table tableName="T_SAS_RANK" domainObjectName="SasRank"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+    </context>
+</generatorConfiguration>
